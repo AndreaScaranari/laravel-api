@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// Route::get('/projects', [ProjectController::class, 'index']);
-// Route::get('/projects/{project}', [ProjectController::class, 'show']);
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('/projects/{id}', [ProjectController::class, 'show']);
 // Route::post('/projects', [ProjectController::class, 'store']);
 // Route::put('/projects/{project}', [ProjectController::class, 'update']);
 // Route::delete('/projects/{project}', [ProjectController::class, 'destroy']);
 
-Route::apiResource('projects', ProjectController::class);
+// Route::apiResource('projects', ProjectController::class);

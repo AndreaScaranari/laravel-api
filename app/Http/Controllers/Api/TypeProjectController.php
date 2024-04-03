@@ -14,10 +14,16 @@ class TypeProjectController extends Controller
         $type = Type::whereSlug($slug)->first();
         if(!$type) return response(null, 404);
 
-        // $projects = Project::whereTypeID($id)->with('type', 'technologies')->get();
+        $projects = Project::whereTypeId($type->id)
+        ->whereIsPublished(true)
+        ->with('type', 'technologies')
+        ->get();
 
-        $type->load('projects.type', 'projects.technologies');
-        $projects = $type->projects->where('is_published', 1);
+        // $type->load('projects.type', 'projects.technologies');
+        // $projects = $type->projects->where('is_published', 1);
+
+        foreach($projects as $project)
+        if($project->image) $project->image = url('storage/' . $project->image);
 
         return response()->json(['projects' => $projects, 'label' => $type->label]);
     }

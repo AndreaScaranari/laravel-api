@@ -17,7 +17,7 @@ class TypeProjectController extends Controller
         // $projects = Project::whereTypeID($id)->with('type', 'technologies')->get();
 
         $type->load('projects.type', 'projects.technologies');
-        $projects = $type->projects;
+        $projects = $type->projects->where('is_published', 1);
 
         return response()->json(['projects' => $projects, 'label' => $type->label]);
     }

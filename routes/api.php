@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\TypeProjectController;
+use App\Http\Controllers\Api\TechnologyProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,7 @@ Route::get('/projects/{slug}', [ProjectController::class, 'show']);
 // Route::apiResource('projects', ProjectController::class);
 
 // * Rotta per i progetti legati a una tipologia
-Route::get('types/{slug}/projects', TypeProjectController::class);
+Route::get('/types/{slug}/projects', TypeProjectController::class);
+
+// * Rotta per i progetti legati a una tecnhologia
+Route::get('/technologies/{slug}/projects', TechnologyProjectController::class);

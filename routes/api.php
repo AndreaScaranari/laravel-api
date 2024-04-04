@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ProjectController;
 use App\Http\Controllers\Api\TypeProjectController;
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\TechnologyProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,6 @@ Route::get('/types/{slug}/projects', TypeProjectController::class);
 
 // * Rotta per i progetti legati a una tecnhologia
 Route::get('/technologies/{slug}/projects', TechnologyProjectController::class);
+
+// * Rotta per ricevere un messaggio inviato(POST) da un utente
+Route::post('/contact-message', [ContactController::class, 'message']);

@@ -17,8 +17,11 @@ class TechnologyProjectController extends Controller
         $projects = Project::whereIsPublished(true)
         ->whereHas('technologies', function($query) use ($technology){
             $query->where('technologies.id', $technology->id);
-        })
+        })->with('type', 'technologies')
         ->get();
+
+        foreach($projects as $project)
+        if($project->image) $project->image = url('storage/' . $project->image);
 
         return response()->json(['projects' => $projects, 'label' => $technology->label]);
     }

@@ -35,7 +35,7 @@ class ContactController extends Controller
 
         $mail = new ContactMessageMail(
             sender: $data['email'], 
-            subject: $data['sender'], 
+            subject: $data['subject'], 
             content: $data['message']);
 
         Mail::to('andrea.scaranari.93@gmail.com')->send($mail);

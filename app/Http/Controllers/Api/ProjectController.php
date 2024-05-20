@@ -16,8 +16,8 @@ class ProjectController extends Controller
         // $projects = Project::all();
         $projects = Project::whereIsPublished(true)->latest()->with('type', 'technologies')->paginate(5);
 
-        foreach($projects as $project){
-            if($project->image) $project->image = url('storage/' . $project->image);
+        foreach ($projects as $project) {
+            if ($project->image) $project->image = url('storage/' . $project->image);
         }
 
         return response()->json($projects);
@@ -37,8 +37,8 @@ class ProjectController extends Controller
     public function show(string $slug)
     {
         $project = Project::whereIsPublished(true)->whereSlug($slug)->with('type', 'technologies')->first();
-        if(!$project) return response(null, 404);
-        if($project->image) $project->image = url('storage/' . $project->image);
+        if (!$project) return response(null, 404);
+        if ($project->image) $project->image = url('storage/' . $project->image);
         return response()->json($project);
     }
 
